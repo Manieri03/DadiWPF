@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#FFF7CF8A">
         <Rectangle Fill="#FFEAB500" HorizontalAlignment="Left" Height="66" Margin="110,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="110"/>
-        <Label Content="Inserisci un numero da 1 a 6" HorizontalAlignment="Left" Height="35" Margin="65,69,0,0" VerticalAlignment="Top" Width="210" FontFamily="MV Boli" FontSize="14"/>
+        <Label Content="Inserisci un numero da 1 a 6 " HorizontalAlignment="Left" Height="35" Margin="65,69,0,0" VerticalAlignment="Top" Width="210" FontFamily="MV Boli" FontSize="14"/>
         <Label Content="DADI" HorizontalAlignment="Left" Height="50" Margin="360,25,0,0" VerticalAlignment="Top" Width="65" FontSize="18" FontFamily="MV Boli" FontWeight="Bold" FontStyle="Italic" Background="#00000000"/>
         <TextBox x:Name="Input" HorizontalAlignment="Left" Height="30" Margin="125,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
         <Button x:Name="btn_Lancia" Content="Lancia il dado" HorizontalAlignment="Left" Height="30" Margin="500,90,0,0" VerticalAlignment="Top" Width="205" Click="btn_Lan" Background="#FFEAB500"/>
