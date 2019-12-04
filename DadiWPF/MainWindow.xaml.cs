@@ -20,6 +20,9 @@ namespace DadiWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Random random = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,22 +30,49 @@ namespace DadiWPF
 
         private void btn_Lan(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int numeroCasuale = random.Next(1, 6);
+            int numeroCasuale = random.Next(1, 7);
+            int puntata = int.Parse(txtpuntata.Text);
+            int crediti = int.Parse(lblcrediti.Content.ToString());
             string r=numeroCasuale.ToString();
-            
+
             int numero = int.Parse(Input.Text);
-            if (numero == numeroCasuale)
+           
+            if (puntata <= crediti)
             {
-                Output.Text =r +" Complimenti, hai vinto!";
+                if (numero < 1 || numero > 6)
+                {
+                    MessageBox.Show("Inserisci un numero compreso tra 1 e 6", "Attenzione", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                if (numero == numeroCasuale)
+                {
+                    Output.Text = r + " Complimenti, hai vinto!";
+                }
+                else
+                {
+                    Output.Text = r + " Ritenta, sarai più fortunato";
+                }
+                Uri resourceUri = new Uri($"/Images/dado{r}.png", UriKind.Relative);
+                dadoimage.Source = new BitmapImage(resourceUri);
+                if (numeroCasuale== numero)
+                {
+                    crediti = crediti + puntata * 3;
+                    lblcrediti.Content = crediti;
+                }
+                else
+                {
+                    crediti = crediti - puntata;
+                    lblcrediti.Content = crediti;
+
+                }
+                if (crediti == 0)
+                {
+                    MessageBox.Show("GAME OVER, hai finito i crediti. Premi ricomincia", "GAME OVER", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }
             else
             {
-                Output.Text = r+" Ritenta, sarai più fortunato";
-            }
-            if(numero<1 || numero > 6)
-            {
-                MessageBox.Show("Inserisci un numero compreso tra 1 e 6","Attenzione", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Non puoi inserire una puntata maggiore dei tuoi crediti", "Attenzione", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -50,7 +80,10 @@ namespace DadiWPF
         {
             Output.Clear();
             Input.Clear();
+            lblcrediti.Content = 100;
+            txtpuntata.Clear();
+            dadoimage.Source = null;
         }
-        
+
     }
 }
